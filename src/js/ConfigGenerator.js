@@ -1,8 +1,5 @@
 import _ from "lodash";
-
-export const SECTION_TYPE_ESSENTIAL = "essential";
-export const SECTION_TYPE_ANALYTICS = "analytics";
-export const SECTION_TYPE_MARKETING = "marketing";
+import cookieConfigs from "./cookies";
 
 export default class ConfigGenerator {
   static sharedInstance;
@@ -65,8 +62,6 @@ export default class ConfigGenerator {
     Object.keys(cookieSectionGrouping).forEach((sectionName) => {
       const { title, description } = sectionScaffolding[sectionName];
       const cookieNames = cookieSectionGrouping[sectionName];
-
-      console.log("COOKIE NAMES", cookieNames);
 
       if (!cookieNames.length) {
         return;
@@ -144,59 +139,5 @@ const sectionScaffolding = {
     description:
       "Diese Cookies sammeln Informationen darücber, wer durch Werbung auf unsere Website gelangt. Alle Daten sind anonymisiert und kü6nnen nicht dazu verwendet werden, Sie zu identifizieren.",
     cookies: [],
-  },
-};
-
-const cookieConfigs = {
-  cc: {
-    name: "Cookie Consent",
-    cookies: "cc_cookie",
-    period: "6 Monate",
-    info: "Cookie das die Cookieeinstellungen des Benutzers speichert.",
-    type: SECTION_TYPE_ESSENTIAL,
-  },
-  stripe: {
-    name: "Stripe",
-    cookies:
-      "site_sid, site-auth, double_cmd_f_uses, lang, stripe.csrf, has_intentionally_selected_curl, scfc, merchant, __stripe_orig_props, private_machine_identifier, _gcl_au, user, __stripe_mid, color-scheme, cookie-perms, recent-views, cid",
-    period: "Session / 6 Monate",
-    info: "Notwendige Cookies, für Bezahlvorgänge über unseren Zahlungsanbieter Stripe.",
-    type: SECTION_TYPE_ESSENTIAL,
-  },
-  gtm: {
-    name: "Google Tag Manager",
-    cookies: "_ga,_gat,_gid",
-    period: "2 Jahre",
-    info: "Cookie von Google zur Steuerung der erweiterten Script- und Ereignisbehandlung.",
-    type: SECTION_TYPE_ANALYTICS,
-  },
-  hotjar: {
-    name: "Hotjar",
-    cookies:
-      "_hjClosedSurveyInvites, _hjDonePolls, _hjMinimizedPolls, _hjDoneTestersWidgets, _hjIncludedInSample, _hjShownFeedbackMessage, _hjid, _hjRecordingLastActivity, hjTLDTest, _hjUserAttributesHash, _hjCachedUserAttributes, _hjLocalStorageTest, _hjptid",
-    period: "Sithung / 1 Jahr",
-    info: "Hotjar ist ein Analysewerkzeug für das Benutzerverhalten von Hotjar Ltd. Wir verwenden Hotjar, um zu verstehen, wie Benutzer mit unserer Website interagieren.",
-    type: SECTION_TYPE_ANALYTICS,
-  },
-  facebook: {
-    name: "Facebook",
-    cookies: "_fbp,act,c_user,datr,fr,m_pixel_ration,pl,presence,sb,spin,wd,xs",
-    period: "Session / 1 Jahr",
-    info: "Cookie von Facebook, das für Website-Analysen, Ad-Targeting und Anzeigenmessung verwendet wird.",
-    type: SECTION_TYPE_MARKETING,
-  },
-  linkedin: {
-    name: "LinkedIn",
-    cookies: "li_gc",
-    period: "Sitzung / 1 Jahr",
-    info: "Cookie von LinkedIn, das für Website-Analysen, Ad-Targeting und Anzeigenmessung verwendet wird.",
-    type: SECTION_TYPE_MARKETING,
-  },
-  bing: {
-    name: "Microsoft Advertising",
-    cookies: "MUID",
-    period: "1 Jahr",
-    info: "Cookies von Microsoft Advertising um den Erfolg von Werbemaßnahmen nachzuvollziehen.",
-    type: SECTION_TYPE_MARKETING,
   },
 };
