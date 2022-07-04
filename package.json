@@ -1,0 +1,63 @@
+{
+  "name": "c3-banner",
+  "version": "0.1.0",
+  "description": "Configurable cookie consent",
+  "contributors": [
+    {
+      "name": "Benjamin Gröner",
+      "email": "benjamin.groener@seedbox-ventures.com"
+    }
+  ],
+  "scripts": {
+    "build": "webpack --config config/webpack.dev.config.js --mode=development",
+    "lint:js": "eslint --ext .js src/js/",
+    "dev": "webpack serve --config config/webpack.dev.config.js --mode=development",
+    "production": "webpack --config config/webpack.prod.config.js --mode=production",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seedbox-ventures/c3-banner.git"
+  },
+  "keywords": [
+    "Cookie",
+    "consent"
+  ],
+  "author": "Seedbox Ventures GmbH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seedbox-ventures/c3-banner/issues"
+  },
+  "homepage": "https://github.com/seedbox-ventures/c3-banner#readme",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "vanilla-cookieconsent": "^2.8.2"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "html-loader": "^3.1.2",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "prettier": "^2.7.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.73.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
+    "webpack-merge": "^5.8.0"
+  }
+}
