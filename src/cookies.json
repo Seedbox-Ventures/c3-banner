@@ -1,0 +1,25 @@
+{
+  "ccc": {
+    "type": "essential",
+    "name": "Cookie Consent",
+    "cookies": "cc_cookie",
+    "period": "6 Monate",
+    "info": "Cookie das die Cookieeinstellungen des Benutzers speichert.",
+    "code": ""
+  },
+  "stripe": {
+    "type": "essential",
+    "name": "Stripe",
+    "cookies": "site_sid, site-auth, double_cmd_f_uses, lang, stripe.csrf, has_intentionally_selected_curl, scfc, merchant, __stripe_orig_props, private_machine_identifier, _gcl_au, user, __stripe_mid, color-scheme, cookie-perms, recent-views, cid",
+    "period": "Session \/ 6 Monate",
+    "info": "Notwendige Cookies, f\u00fcr Bezahlvorg\u00e4nge \u00fcber unseren Zahlungsanbieter Stripe.",
+    "code": ""
+  },
+  "gtm": {
+    "name": "Google Tag Manager",
+    "cookies": "_ga,_gat,_gid",
+    "period": "2 Jahre",
+    "info": "Cookie von Google zur Steuerung der erweiterten Script- und Ereignisbehandlung.",
+    "code": "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\r\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\r\n'https:\/\/www.googletagmanager.com\/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,'script','dataLayer','GTM-NKLZT2T');"
+  }
+}
