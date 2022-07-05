@@ -125,19 +125,19 @@ const sectionScaffolding = {
   essential: {
     title: "Notwendige Cookies",
     description:
-      "Diese Cookies sind fücr das ordnungsgemäße Funktionieren der Website unerlässlich. Ohne diese Cookies wücrde die Website nicht richtig funktionieren.",
+      "Diese Cookies sind für das ordnungsgemäße Funktionieren der Website unerlässlich. Ohne diese Cookies würde die Website nicht richtig funktionieren.",
     cookies: [],
   },
   analytics: {
     title: "Analytics Cookies",
     description:
-      "Diese Cookies sammeln Informationen darücber, wie Sie die Website nutzen, welche Seiten Sie besucht und welche Links Sie angeklickt haben. Alle Daten sind anonymisiert und kü6nnen nicht dazu verwendet werden, Sie zu identifizieren.",
+      "Diese Cookies sammeln Informationen darüber, wie Sie die Website nutzen, welche Seiten Sie besucht und welche Links Sie angeklickt haben. Alle Daten sind anonymisiert und können nicht dazu verwendet werden, Sie zu identifizieren.",
     cookies: [],
   },
   marketing: {
     title: "Werbe Cookies",
     description:
-      "Diese Cookies sammeln Informationen darücber, wer durch Werbung auf unsere Website gelangt. Alle Daten sind anonymisiert und kü6nnen nicht dazu verwendet werden, Sie zu identifizieren.",
+      "Diese Cookies sammeln Informationen darüber, wer durch Werbung auf unsere Website gelangt. Alle Daten sind anonymisiert und können nicht dazu verwendet werden, Sie zu identifizieren.",
     cookies: [],
   },
 };
