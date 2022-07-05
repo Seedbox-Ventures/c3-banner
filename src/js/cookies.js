@@ -11,14 +11,21 @@ export default {
     activationCode: undefined,
     type: SECTION_TYPE_ESSENTIAL,
   },
-  stripe: {
-    name: "Stripe",
-    cookies:
-      "site_sid, site-auth, double_cmd_f_uses, lang, stripe.csrf, has_intentionally_selected_curl, scfc, merchant, __stripe_orig_props, private_machine_identifier, _gcl_au, user, __stripe_mid, color-scheme, cookie-perms, recent-views, cid",
-    period: "Session / 6 Monate",
-    info: "Notwendige Cookies, für Bezahlvorgänge über unseren Zahlungsanbieter Stripe.",
-    activationCode: undefined,
-    type: SECTION_TYPE_ESSENTIAL,
+  facebook: {
+    name: "Facebook",
+    cookies: "_fbp,act,c_user,datr,fr,m_pixel_ration,pl,presence,sb,spin,wd,xs",
+    period: "Session / 1 Jahr",
+    info: "Cookie von Facebook, das für Website-Analysen, Ad-Targeting und Anzeigenmessung verwendet wird.",
+    activationCode: (fbPixelId) => () => {
+      if (window.doNotTrack !== 1) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "init-fb",
+          "fb-pixelid": fbPixelId,
+        });
+      }
+    },
+    type: SECTION_TYPE_MARKETING,
   },
   ga: {
     name: "Google Analytics",
@@ -82,22 +89,6 @@ export default {
     }`,
     type: SECTION_TYPE_ANALYTICS,
   },
-  facebook: {
-    name: "Facebook",
-    cookies: "_fbp,act,c_user,datr,fr,m_pixel_ration,pl,presence,sb,spin,wd,xs",
-    period: "Session / 1 Jahr",
-    info: "Cookie von Facebook, das für Website-Analysen, Ad-Targeting und Anzeigenmessung verwendet wird.",
-    activationCode: (fbPixelId) => () => {
-      if (window.doNotTrack !== 1) {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "init-fb",
-          "fb-pixelid": fbPixelId,
-        });
-      }
-    },
-    type: SECTION_TYPE_MARKETING,
-  },
   linkedin: {
     name: "LinkedIn",
     cookies: "li_gc",
@@ -120,15 +111,24 @@ export default {
     period: "1 Jahr",
     info: "Cookies von Microsoft Advertising um den Erfolg von Werbemaßnahmen nachzuvollziehen.",
     activationCode: (uetTag) => `() => {
-      const uetTag = "${uetTag}";
-      if (window.doNotTrack !== 1) {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "init-microsoft-advertising",
-          "uet-tag": uetTag,
-        });
-      }
-    }`,
+        const uetTag = "${uetTag}";
+        if (window.doNotTrack !== 1) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "init-microsoft-advertising",
+            "uet-tag": uetTag,
+          });
+        }
+      }`,
     type: SECTION_TYPE_MARKETING,
+  },
+  stripe: {
+    name: "Stripe",
+    cookies:
+      "site_sid, site-auth, double_cmd_f_uses, lang, stripe.csrf, has_intentionally_selected_curl, scfc, merchant, __stripe_orig_props, private_machine_identifier, _gcl_au, user, __stripe_mid, color-scheme, cookie-perms, recent-views, cid",
+    period: "Session / 6 Monate",
+    info: "Notwendige Cookies, für Bezahlvorgänge über unseren Zahlungsanbieter Stripe.",
+    activationCode: undefined,
+    type: SECTION_TYPE_ESSENTIAL,
   },
 };
