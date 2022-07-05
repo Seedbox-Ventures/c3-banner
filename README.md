@@ -87,3 +87,9 @@ Here is an overview of all possible css variables with example values.
 }
 ```
 
+<h3>No tracking option</h3>
+The c3-banner comes with a no tracking option that helps to prevent unwanted tracking of test users or internal users.
+Simply add a notracking=1 query paramter to your URL.
+
+E.g. => [https://seedbox-ventures.com?notracking=1](https://seedbox-ventures.com?notracking=1)
+
