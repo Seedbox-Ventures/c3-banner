@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   (function init(config) {
     if (!config) {
       console.error(
-        "Could not find condiguration for c3 banner (Configurable Cookie Consent)"
+        "Could not find configuration for c3 banner (Configurable Cookie Consent)"
       );
       return;
     }
