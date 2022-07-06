@@ -94,7 +94,8 @@ export default {
     cookies: "li_gc",
     period: "Sitzung / 1 Jahr",
     info: "Cookie von LinkedIn, das für Website-Analysen, Ad-Targeting und Anzeigenmessung verwendet wird.",
-    activationCode: (insightTagId) => () => {
+    activationCode: (insightTagId) => `() => {
+      const insightTagId = "${insightTagId}";
       if (window.doNotTrack !== 1) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -102,7 +103,7 @@ export default {
           "linkedin-insight-tag-id": insightTagId,
         });
       }
-    },
+    }`,
     type: SECTION_TYPE_MARKETING,
   },
   ma: {
