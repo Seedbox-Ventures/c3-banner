@@ -14,11 +14,18 @@ module.exports = () => {
 
     /* Development Server Configuration */
     devServer: {
-      static: {
-        directory: environment.paths.output,
-        publicPath: "/",
-        watch: true,
-      },
+      static: [
+        {
+          directory: environment.paths.output,
+          publicPath: "/",
+          watch: true,
+        },
+        {
+          directory: environment.paths['dev-js'],
+          publicPath: "/js",
+          watch: true,
+        },
+      ],
       client: {
         overlay: true,
       },
