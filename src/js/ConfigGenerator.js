@@ -21,7 +21,7 @@ export default class ConfigGenerator {
     const modalSettings = this.generateModalSettings({
       title,
       description,
-      cookies: { ...cookies, ...defaults.cookies },
+      cookies: { ...defaults.cookies, ...cookies },
     });
 
     return {
