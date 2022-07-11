@@ -21,7 +21,7 @@ export default class ConfigGenerator {
     const modalSettings = this.generateModalSettings({
       title,
       description,
-      cookies: { ...cookies, ...defaults.cookies },
+      cookies: { ...defaults.cookies, ...cookies },
     });
 
     return {
@@ -107,14 +107,14 @@ export default class ConfigGenerator {
 const defaults = {
   title: "Wir nutzen Cookies!",
   description:
-    'Diese Website verwendet essentielle Cookies, um ihren ordnungsgemäßen Betrieb zu gewährleisten und Tracking-Cookies, um zu verstehen, wie Sie mit ihr interagieren. Letztere werden nur nach Zustimmung gesetzt. <button type="button" data-cc="c-settings" class="cc-link">Zur Auswahl</button>',
+    "Diese Website verwendet essentielle Cookies, um ihren ordnungsgemäßen Betrieb zu gewährleisten und Tracking-Cookies, um zu verstehen, wie Sie mit ihr interagieren. Letztere werden nur nach Zustimmung gesetzt.",
   primaryBtn: {
     text: "Alle akzeptieren",
     role: "accept_all",
   },
   secondaryBtn: {
-    text: "Essentielle akzeptieren",
-    role: "accept_necessary",
+    text: "Individuelle Datenschutzeinstellung",
+    role: "c-settings",
   },
   cookies: {
     cc: true,

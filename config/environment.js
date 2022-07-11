@@ -4,7 +4,8 @@ module.exports = () => ({
   paths: {
     /* Path to source files directory */
     source: path.resolve(__dirname, "../src/"),
-    templates: path.resolve(__dirname, `../src/dev-templates/`),
+    templates: path.resolve(__dirname, `../src/dev-assets/html-templates`),
+    "dev-js": path.resolve(__dirname, `../src/dev-assets/js`),
 
     /* Path to built files directory */
     output: path.resolve(__dirname, `../dist/`),
