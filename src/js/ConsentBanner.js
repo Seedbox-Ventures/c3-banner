@@ -28,23 +28,42 @@ export default class ConsentBanner {
       this.vanillaConsent.getUserPreferences();
 
     Object.keys(this.config.cookies).forEach((cookieName) => {
-      const { type, activationCode } = cookies[cookieName];
+      const { type, activationCode: defaultActivationCode } =
+        cookies[cookieName];
       const accepted = categories.includes(type);
       const cookieData = this.config.cookies[cookieName];
+      let activationCode;
+      let trackingId;
+
+      switch (typeof cookieData) {
+        case "string":
+          trackingId = cookieData;
+          break;
+        case "object":
+          trackingId = cookieData.trackingId ?? void 0;
+          activationCode = cookieData.activationCode ?? void 0;
+          break;
+      }
+
+      if (!activationCode) {
+        activationCode = defaultActivationCode;
+      }
+
       if (typeof activationCode === "function") {
-        this.setupCookieScript(type, activationCode(cookieData), accepted);
+        this.setupCookieScript(type, activationCode, trackingId, accepted);
       }
     });
   }
 
-  setupCookieScript(sectionName, code, accepted) {
+  setupCookieScript(sectionName, code, trackingId, accepted) {
     const scriptEl = document.createElement("script");
     scriptEl.setAttribute(
       "type",
       accepted ? "application/javascript" : "text/plain"
     );
     scriptEl.setAttribute("data-cookiecategory", sectionName);
-    scriptEl.innerHTML = `(${code})()`;
+    const script = `(${code.toString()})("${trackingId}")`;
+    scriptEl.innerHTML = script;
     document.body.append(scriptEl);
   }
 }
