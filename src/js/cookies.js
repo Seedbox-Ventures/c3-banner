@@ -132,4 +132,22 @@ export default {
     activationCode: undefined,
     type: SECTION_TYPE_ESSENTIAL,
   },
+  tiktok: {
+      name: "TikTok",
+      cookies:
+        "",
+      period: "Sitzung / 1 Jahr",
+      info: "TikTok ist ein Social Media Portal für das Streaming kurzers Videoinhalte.",
+      activationCode: (tiktokPixel) => `() => {
+        const tiktokPixel = "${tiktokPixel}";
+        if (window.doNotTrack !== 1) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "init-tiktok",
+            "tiktok-pixel": tiktokPixel,
+          });
+        }
+      }`,
+      type: SECTION_TYPE_MARKETING,
+    },
 };
