@@ -23,7 +23,16 @@ window.ccc = {
     cookies: {
       ga: "<Google Analytics ID>",
       gtm: "<Google Tag Manager ID>",
-      hotjar: "<Hotjar Site ID>"
+      hotjar: "<Hotjar Site ID>",
+      linkedin: {
+        trackingId: "<LinkedIn Insight Tag>"
+        activationCode: function(linkedinInsightTag) {
+          /** 
+            Place here some code that will be executed
+            if the linkedin cookie is accepted
+          */ 
+        }
+      }
     }
 };
 </script>
@@ -34,7 +43,8 @@ window.ccc = {
 ### Cookie configuration options
 
 Currently there is only a limited set of cookie configurations available. If you need the integration of further
-cookies, please send a message to the developer [benjamin.groener@seedbox-ventures.com](mailto:benjamin.groener@seedbox-ventures.com)  
+cookies, please send a message to the
+developer [benjamin.groener@seedbox-ventures.com](mailto:benjamin.groener@seedbox-ventures.com)
 
 Here is a list of all currently possible cookie options
 
@@ -56,7 +66,8 @@ window.ccc = {
 
 <h3>Styling options</h3>
 
-This cookie banner is implemented on basis of the vanilla-cookieconsent. (See in the [About Section](#section-heading-about))
+This cookie banner is implemented on basis of the vanilla-cookieconsent. (See in
+the [About Section](#section-heading-about))
 Therefore it is customizable with the same css variables as the vanilla-cookieconsent.
 
 Here is an overview of all possible css variables with example values.
