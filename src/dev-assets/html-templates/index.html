@@ -11,7 +11,12 @@
         gtm: "TEST-123",
         hotjar: "TEST-123",
         stripe: true,
-        linkedin: "ASDASDS",
+        linkedin: {
+          trackingId: 'SOME PROVIDED CODE',
+          activationCode: (id) => {
+            console.log('test if code works - ', id);
+          }
+        },
       }
     };
   </script>
