@@ -75,7 +75,7 @@ export default {
     name: "Hotjar",
     cookies:
       "_hjClosedSurveyInvites, _hjDonePolls, _hjMinimizedPolls, _hjDoneTestersWidgets, _hjIncludedInSample, _hjShownFeedbackMessage, _hjid, _hjRecordingLastActivity, hjTLDTest, _hjUserAttributesHash, _hjCachedUserAttributes, _hjLocalStorageTest, _hjptid",
-    period: "Sithung / 1 Jahr",
+    period: "Sitzung / 1 Jahr",
     info: "Hotjar ist ein Analysewerkzeug für das Benutzerverhalten von Hotjar Ltd. Wir verwenden Hotjar, um zu verstehen, wie Benutzer mit unserer Website interagieren.",
     activationCode: (hjSiteId) => `() => {
       const hjSiteId = "${hjSiteId}";
