@@ -1,19 +1,24 @@
-import cookies, {
+import cookiesConfig, {
   SECTION_TYPE_ESSENTIAL,
   SECTION_TYPE_ANALYTICS,
   SECTION_TYPE_MARKETING,
 } from "./cookies";
+import presets from "./presets";
 import vanillaConsent from "vanilla-cookieconsent";
 import ConfigGenerator from "./ConfigGenerator";
 
 export default class ConsentBanner {
   config;
   configGenerator;
+  preset;
   vanillaConfig;
   vanillaConsent;
 
   constructor(config) {
-    this.config = config;
+    this.config = { ...config };
+    this.preset = { ...presets.getPreset(config.preset) };
+
+    this.config = this._applyPresetToConfig(this.config, this.preset);
 
     this.configGenerator = ConfigGenerator.instance();
     this.vanillaConfig = this.configGenerator.generateConfig(config);
@@ -23,13 +28,56 @@ export default class ConsentBanner {
     this.setupCookieScripts();
   }
 
+  _applyPresetToConfig(baseConfig = {}, preset = {}) {
+    const config = { ...baseConfig };
+
+    const { cookies = {} } = config;
+    Object.keys(preset).forEach((cookieName) => {
+      const { [cookieName]: cookieConfig } = cookies;
+      const { [cookieName]: cookiePreset } = preset;
+
+      let trackingId =
+        (typeof cookieConfig === "object"
+          ? cookieConfig.trackingId
+          : cookieConfig) ??
+        (typeof cookiePreset === "object"
+          ? cookiePreset.trackingId
+          : cookiePreset);
+      let activationCode =
+        (typeof cookieConfig === "object"
+          ? cookieConfig.activationCode
+          : void 0) ??
+        (typeof cookiePreset === "object"
+          ? cookiePreset.activationCode
+          : void 0);
+
+      console.log("COOKIE NAME", cookieName);
+      console.log("CONF 1", cookieConfig);
+      console.log("PRESET", cookiePreset);
+      console.log("TRACKING ID", trackingId);
+      console.log("ACTIVATION CODE", activationCode);
+
+      if (trackingId) {
+        config.cookies[cookieName] = {
+          trackingId,
+          activationCode,
+        };
+      }
+    });
+
+    return config;
+  }
+
   setupCookieScripts() {
     const { accepted_categories: categories } =
       this.vanillaConsent.getUserPreferences();
+    const { cookies = {}, preset: presetName = "default" } = this.config;
+    const cookiePreset = presets.getPreset(presetName);
+
+    console.log("COOKIES CONFIG", cookies.gtm);
 
     Object.keys(this.config.cookies).forEach((cookieName) => {
-      const { type, activationCode: defaultActivationCode } =
-        cookies[cookieName];
+      const { type } = cookiesConfig[cookieName];
       const accepted = categories.includes(type);
       const cookieData = this.config.cookies[cookieName];
       let activationCode;
@@ -43,10 +91,6 @@ export default class ConsentBanner {
           trackingId = cookieData.trackingId ?? void 0;
           activationCode = cookieData.activationCode ?? void 0;
           break;
-      }
-
-      if (!activationCode) {
-        activationCode = defaultActivationCode;
       }
 
       if (typeof activationCode === "function") {

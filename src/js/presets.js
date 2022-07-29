@@ -1,4 +1,4 @@
-export const defaultPreset = {
+const defaultPreset = {
   ga: {
     activationCode: function (ga4MessId) {
       if (window.doNotTrack !== 1) {
@@ -203,7 +203,19 @@ export const defaultPreset = {
 };
 
 // ssp stands for seedbox super preset
-export const ssp = {
+const ssp = {
+  ga: {
+    activationCode: function (ga4MessId) {
+      if (window.doNotTrack !== 1) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "init-ga4",
+          "ga4-messid": ga4MessId,
+        });
+      }
+    },
+  },
+  gtm: "GTM-P4MZ2HV",
   hotjar: {
     activationCode: function (hjSiteId) {
       if (window.doNotTrack !== 1) {
@@ -232,7 +244,51 @@ export const ssp = {
   },
 };
 
-export default {
+export const presetMap = {
   default: defaultPreset,
   ssp,
 };
+
+const presets = {
+  getPreset: (presetName) => {
+    const defaultPreset = presetMap.default;
+    if (!presetName) {
+      return defaultPreset;
+    }
+
+    if (typeof presetMap[presetName] !== "object") {
+      throw `${presetName} is not a known name of a c3-banner preset.`;
+    }
+
+    let preset = { ...presetMap[presetName] };
+    let result = {};
+
+    Object.keys(defaultPreset).forEach((cookieName) => {
+      const { [cookieName]: defaultConfig } = defaultPreset;
+      const { [cookieName]: presetConfig } = preset;
+
+      let trackingId =
+        (typeof presetConfig === "object"
+          ? presetConfig.trackingId
+          : presetConfig) ??
+        (typeof defaultConfig === "object"
+          ? defaultConfig.trackingId
+          : defaultConfig);
+      let activationCode =
+        (typeof presetConfig === "object"
+          ? presetConfig.activationCode
+          : void 0) ??
+        (typeof defaultConfig === "object"
+          ? defaultConfig.activationCode
+          : void 0);
+
+      result[cookieName] = {
+        trackingId,
+        activationCode,
+      };
+    });
+    return result;
+  },
+};
+
+export default presets;
