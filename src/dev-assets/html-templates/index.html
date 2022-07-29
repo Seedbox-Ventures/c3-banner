@@ -6,8 +6,15 @@
   <title>Test Page</title>
   <script type="text/javascript">
     window.ccc = {
+      preset: "ssp",
       cookies: {
-        ga: "GA_TEST---",
+        ga: {
+          trackingId: "GA_TEST---",
+          activationCode: (gogogo) => {
+            console.log('Google Analytics is activated');
+          }
+        },
+
         gtm: "TEST-123",
         hotjar: "TEST-123",
         stripe: true,
