@@ -203,7 +203,7 @@ const defaultPreset = {
 };
 
 // ssp stands for seedbox super preset
-const ssp = {
+const vh = {
   ga: {
     activationCode: function (ga4MessId) {
       if (window.doNotTrack !== 1) {
@@ -246,7 +246,7 @@ const ssp = {
 
 export const presetMap = {
   default: defaultPreset,
-  ssp,
+  vh,
 };
 
 const presets = {
