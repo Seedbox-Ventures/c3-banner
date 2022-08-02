@@ -220,6 +220,8 @@ const defaultPreset = {
 const vh = {
   ga: {
     activationCode: function (ga4MessId) {
+      const idBlockSelector = "[id^=block-]:not(article)";
+
       if (window.doNotTrack === 1) return;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -229,7 +231,7 @@ const vh = {
 
       let blockElements;
 
-      blockElements = document.querySelectorAll("[id^=block-]");
+      blockElements = document.querySelectorAll(idBlockSelector);
 
       function clickListener(evt) {
         const target = evt.currentTarget;
@@ -240,11 +242,14 @@ const vh = {
         });
 
         if (codeElement) {
-          const eventName = codeElement.innerText;
-          window.dataLayer.push({
-            event: `vh_${eventName}`,
-            vhEvent: `${eventName}`,
-          });
+          const closestParent = codeElement.closest(idBlockSelector);
+          if (target.id === closestParent.id) {
+            const eventName = codeElement.innerText;
+            window.dataLayer.push({
+              event: `vh_${eventName}`,
+              vhEvent: `${eventName}`,
+            });
+          }
         }
       }
       blockElements.forEach((element) =>
