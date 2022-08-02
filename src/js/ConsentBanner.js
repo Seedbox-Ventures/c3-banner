@@ -51,12 +51,6 @@ export default class ConsentBanner {
           ? cookiePreset.activationCode
           : void 0);
 
-      console.log("COOKIE NAME", cookieName);
-      console.log("CONF 1", cookieConfig);
-      console.log("PRESET", cookiePreset);
-      console.log("TRACKING ID", trackingId);
-      console.log("ACTIVATION CODE", activationCode);
-
       if (trackingId) {
         config.cookies[cookieName] = {
           trackingId,
@@ -73,8 +67,6 @@ export default class ConsentBanner {
       this.vanillaConsent.getUserPreferences();
     const { cookies = {}, preset: presetName = "default" } = this.config;
     const cookiePreset = presets.getPreset(presetName);
-
-    console.log("COOKIES CONFIG", cookies.gtm);
 
     Object.keys(this.config.cookies).forEach((cookieName) => {
       const { type } = cookiesConfig[cookieName];
