@@ -1,11 +1,11 @@
+import vanillaConsent from "vanilla-cookieconsent";
 import cookiesConfig, {
   SECTION_TYPE_ESSENTIAL,
   SECTION_TYPE_ANALYTICS,
   SECTION_TYPE_MARKETING,
-} from "./cookies";
-import presets from "./presets";
-import vanillaConsent from "vanilla-cookieconsent";
-import ConfigGenerator from "./ConfigGenerator";
+} from "./cookies.js";
+import presets from "./presets.js";
+import ConfigGenerator from "./ConfigGenerator.js";
 
 export default class ConsentBanner {
   config;
@@ -51,12 +51,6 @@ export default class ConsentBanner {
           ? cookiePreset.activationCode
           : void 0);
 
-      console.log("COOKIE NAME", cookieName);
-      console.log("CONF 1", cookieConfig);
-      console.log("PRESET", cookiePreset);
-      console.log("TRACKING ID", trackingId);
-      console.log("ACTIVATION CODE", activationCode);
-
       if (trackingId) {
         config.cookies[cookieName] = {
           trackingId,
@@ -73,8 +67,6 @@ export default class ConsentBanner {
       this.vanillaConsent.getUserPreferences();
     const { cookies = {}, preset: presetName = "default" } = this.config;
     const cookiePreset = presets.getPreset(presetName);
-
-    console.log("COOKIES CONFIG", cookies.gtm);
 
     Object.keys(this.config.cookies).forEach((cookieName) => {
       const { type } = cookiesConfig[cookieName];
@@ -93,7 +85,10 @@ export default class ConsentBanner {
           break;
       }
 
-      if (typeof activationCode === "function") {
+      if (
+        typeof activationCode === "function" ||
+        (typeof activationCode === "string" && activationCode.length)
+      ) {
         this.setupCookieScript(type, activationCode, trackingId, accepted);
       }
     });
@@ -107,6 +102,7 @@ export default class ConsentBanner {
     );
     scriptEl.setAttribute("data-cookiecategory", sectionName);
     const script = `(${code.toString()})("${trackingId}")`;
+
     scriptEl.innerHTML = script;
     document.body.append(scriptEl);
   }

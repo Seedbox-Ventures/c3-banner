@@ -30,6 +30,7 @@
     "url": "https://github.com/seedbox-ventures/c3-banner/issues"
   },
   "homepage": "https://github.com/seedbox-ventures/c3-banner#readme",
+  "type": "module",
   "dependencies": {
     "lodash": "^4.17.21",
     "vanilla-cookieconsent": "^2.8.2"

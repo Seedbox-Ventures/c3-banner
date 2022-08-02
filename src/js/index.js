@@ -3,6 +3,7 @@ import "../scss/main.scss";
 import "vanilla-cookieconsent/src/cookieconsent.js";
 import ConfigGenerator from "./ConfigGenerator.js";
 import ConsentBanner from "./ConsentBanner.js";
+import presets from "./presets.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Setup no tracking code

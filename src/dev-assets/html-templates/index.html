@@ -3,22 +3,13 @@
 <head>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta charset="UTF-8"/>
-  <title>Test Page</title>
+  <title>Local Development Page</title>
   <script type="text/javascript">
     window.ccc = {
       preset: "vh",
       cookies: {
-        ga: {
-          trackingId: "GA_TEST---",
-        },
-        hotjar: "TEST-123",
-        stripe: true,
-        linkedin: {
-          trackingId: 'SOME PROVIDED CODE',
-          activationCode: (id) => {
-            console.log('test if code works - ', id);
-          }
-        },
+        ga: "G-ER2H396E3W",
+        hotjar: "2577751",
       }
     };
   </script>
@@ -32,6 +23,34 @@
 <section style="padding: 0 32px;">
   <h1>Configurable config banner test page.</h1>
   <button onclick="clearCookiesAndReload()">Clear Cookies and reload</button>
+</section>
+<section>
+  <blockquote id="block-ace92d62fdb84a9ab01ee6e116971a12" class="notion-quote bg-blue">
+    <span
+      class="notion-semantic-string">
+      <span>
+        <a href="https://seedbox-ventures.com" class="notion-link link" target="_blank"
+           rel="noopener noreferrer">
+          A blue button
+        </a>
+      </span>
+    </span>
+  </blockquote>
+  <blockquote id="block-ad946b1194b847aca1725e08a8dfc39a" class="notion-quote bg-green">
+    <span class="notion-semantic-string">
+      <span>
+        <a href="https://seedbox-ventures.com" class="notion-link link" target="_blank"
+           rel="noopener noreferrer">
+          A green button
+        </a>
+      </span>
+      <span>
+      </span>
+      <span>
+        <code class="code">custom_tracking_event</code>
+      </span>
+    </span>
+  </blockquote>
 </section>
 </body>
 

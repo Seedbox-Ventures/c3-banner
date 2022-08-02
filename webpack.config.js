@@ -2,13 +2,13 @@
  * Webpack main configuration file
  */
 
-const path = require("path");
-const fs = require("fs");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import path from "path";
+import fs from "fs";
+import HTMLWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-module.exports = (environment) => {
+const webpackConfig = function (environment) {
   const { application = "forum" } = environment;
   const templateFiles = fs
     .readdirSync(environment.paths.templates)
@@ -36,17 +36,16 @@ module.exports = (environment) => {
       rules: [
         {
           test: /\.((c|sa|sc)ss)$/i,
-          use: [
-            MiniCssExtractPlugin.loader,
-            "css-loader",
-            "sass-loader",
-          ],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
         {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
           },
         },
       ],
@@ -66,3 +65,5 @@ module.exports = (environment) => {
     target: "web",
   };
 };
+
+export default webpackConfig;

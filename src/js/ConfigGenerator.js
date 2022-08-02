@@ -1,5 +1,5 @@
 import _ from "lodash";
-import cookieConfigs from "./cookies";
+import cookieConfigs from "./cookies.js";
 
 export default class ConfigGenerator {
   static sharedInstance;

@@ -1,13 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { merge } = require("webpack-merge");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+import path from "path";
+import { merge } from "webpack-merge";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 
-const baseConfFactory = require("../webpack.config");
-const envFactory = require("./environment");
-const path = require("path");
+import baseConfFactory from "../webpack.config.js";
+import envFactory from "./environment.js";
 
-module.exports = () => {
+export default () => {
   const environment = envFactory();
   return merge(baseConfFactory(environment), {
     mode: "production",
