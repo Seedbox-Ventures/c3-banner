@@ -1,11 +1,36 @@
 class SuperTrackingManager {
   gtag;
+  htmlElements = [];
 
   constructor(gtag) {
     this.gtag = gtag;
+    this._setup();
   }
 
-  static ga4DefaultCode(ga4MessId) {
+  _cleanup() {
+    if (!this.htmlElements || !this.htmlElements.length) return;
+    this.htmlElements.forEach(this._cleanupClickTrackingForElement);
+  }
+
+  _setup() {
+    this._cleanup();
+    this.htmlElements = document.querySelectorAll('[id^="block-"]');
+    this.htmlElements.forEach(this._setupClickTrackingForElement);
+  }
+
+  _setupClickTrackingForElement(element) {
+    element.addEventListener("click", SuperTrackingManager.clickListener);
+  }
+
+  _cleanupClickTrackingForElement(element) {
+    element.removeEventListener("click", SuperTrackingManager.clickListener);
+  }
+
+  clickListener(event) {
+    console.log("CLICK ON ELEMENT", event);
+  }
+
+  ga4DefaultCode(ga4MessId) {
     if (window.doNotTrack === 1) return;
 
     const js = document.createElement("script");
@@ -33,7 +58,7 @@ class SuperTrackingManager {
     };
   }
 
-  static gtmDefaultCode(gtmID) {
+  gtmDefaultCode(gtmID) {
     if (window.doNotTrack === 1) return;
 
     // Define dataLayer and the gtag function.
@@ -53,7 +78,7 @@ class SuperTrackingManager {
     })(window, document, "script", "dataLayer", gtmID);
   }
 
-  static hotjarDefaultCode(hjSiteId) {
+  hotjarDefaultCode(hjSiteId) {
     if (window.doNotTrack === 1) return;
 
     !!(function (h, o, t, j, a, r) {
@@ -71,7 +96,7 @@ class SuperTrackingManager {
     })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
   }
 
-  static linkedinDefaultCode(insightTagId) {
+  linkedinDefaultCode(insightTagId) {
     if (window.doNotTrack === 1) return;
 
     window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -93,7 +118,7 @@ class SuperTrackingManager {
     })(window.lintrk);
   }
 
-  static maDefaultCode(uetTag) {
+  maDefaultCode(uetTag) {
     if (window.doNotTrack === 1) return;
 
     !!(function (w, d, t, r, u) {
@@ -117,7 +142,7 @@ class SuperTrackingManager {
     })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
   }
 
-  static metaDefaultCode(metaPixelId) {
+  metaDefaultCode(metaPixelId) {
     if (window.doNotTrack === 1) return;
 
     !(function (f, b, e, v, n, t, s) {
@@ -147,7 +172,7 @@ class SuperTrackingManager {
     fbq("track", "PageView");
   }
 
-  static tiktokDefaultCode(tiktokPixel) {
+  tiktokDefaultCode(tiktokPixel) {
     if (window.doNotTrack === 1) return;
 
     !(function (w, d, t) {

@@ -1,10 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { merge } = require("webpack-merge");
+import { merge } from "webpack-merge";
 
-const baseConfFactory = require("../webpack.config");
-const envFactory = require("./environment");
+import baseConfFactory from "../webpack.config.js";
+import envFactory from "./environment.js";
 
-module.exports = () => {
+export default () => {
   const environment = envFactory();
   return merge(baseConfFactory(environment), {
     mode: "development",
@@ -21,7 +21,7 @@ module.exports = () => {
           watch: true,
         },
         {
-          directory: environment.paths['dev-js'],
+          directory: environment.paths["dev-js"],
           publicPath: "/js",
           watch: true,
         },

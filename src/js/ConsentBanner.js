@@ -1,11 +1,12 @@
+import vanillaConsent from "vanilla-cookieconsent";
 import cookiesConfig, {
   SECTION_TYPE_ESSENTIAL,
   SECTION_TYPE_ANALYTICS,
   SECTION_TYPE_MARKETING,
-} from "./cookies";
-import presets from "./presets";
-import vanillaConsent from "vanilla-cookieconsent";
-import ConfigGenerator from "./ConfigGenerator";
+} from "./cookies.js";
+import presets from "./presets.js";
+import ConfigGenerator from "./ConfigGenerator.js";
+import SuperTrackingManager from "./SuperTrackingManager.js";
 
 export default class ConsentBanner {
   config;

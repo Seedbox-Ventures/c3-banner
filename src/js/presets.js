@@ -1,4 +1,4 @@
-import SuperTrackingManager from "./SuperTrackingManager";
+import SuperTrackingManager from "./SuperTrackingManager.js";
 
 const defaultPreset = {
   ga: {
@@ -37,7 +37,7 @@ const vh = {
   hotjar: {
     activationCode: function (hjSiteId) {
       if (window.doNotTrack !== 1) {
-        (function (h, o, t, j, a, r) {
+        !(function (h, o, t, j, a, r) {
           h.hj =
             h.hj ||
             function () {
@@ -62,7 +62,7 @@ const vh = {
   },
 };
 
-export const presetMap = {
+const presetMap = {
   default: defaultPreset,
   vh,
 };
