@@ -6,7 +6,6 @@ import cookiesConfig, {
 } from "./cookies.js";
 import presets from "./presets.js";
 import ConfigGenerator from "./ConfigGenerator.js";
-import SuperTrackingManager from "./SuperTrackingManager.js";
 
 export default class ConsentBanner {
   config;
@@ -86,7 +85,10 @@ export default class ConsentBanner {
           break;
       }
 
-      if (typeof activationCode === "function") {
+      if (
+        typeof activationCode === "function" ||
+        (typeof activationCode === "string" && activationCode.length)
+      ) {
         this.setupCookieScript(type, activationCode, trackingId, accepted);
       }
     });
@@ -100,6 +102,7 @@ export default class ConsentBanner {
     );
     scriptEl.setAttribute("data-cookiecategory", sectionName);
     const script = `(${code.toString()})("${trackingId}")`;
+
     scriptEl.innerHTML = script;
     document.body.append(scriptEl);
   }
