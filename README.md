@@ -52,13 +52,14 @@ Here is a list of all currently possible cookie options
 <script>
 window.ccc = {
     cookies: {
-      facebook: "<Facebook Pixel>",
       ga: "<Google Analytics Mess ID>",
       gtm: "<Google Tag Manager ID>",
       hotjar: "<Hotjar Site ID>",
       linkedin: "<LinkedIn Insight Tag>",
       ma: "<Microsoft Advertising UET-Tag>",
-      stripe: true //Any truethy value is possible, no ID needed.
+      meta: "<Meta Pixel>",
+      stripe: true, //Any truethy value is possible, no ID needed.
+      tiktok: "<TikTok Pixel ID>"
     }
 };
 </script>
