@@ -49,7 +49,7 @@ export function gtmDefaultCode(gtmID) {
 export function hotjarDefaultCode(hjSiteId) {
   if (window.doNotTrack === 1) return;
 
-  return (function (h, o, t, j, a, r) {
+  !!(function (h, o, t, j, a, r) {
     h.hj =
       h.hj ||
       function () {
