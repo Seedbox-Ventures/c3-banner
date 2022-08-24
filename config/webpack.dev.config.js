@@ -22,7 +22,7 @@ export default () => {
         },
         {
           directory: environment.paths["dev-js"],
-          publicPath: "/js",
+          publicPath: "/dev-assets/js",
           watch: true,
         },
       ],
