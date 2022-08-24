@@ -32,6 +32,7 @@
   "homepage": "https://github.com/seedbox-ventures/c3-banner#readme",
   "type": "module",
   "dependencies": {
+    "core-js": "^3.24.1",
     "lodash": "^4.17.21",
     "vanilla-cookieconsent": "^2.8.2"
   },
@@ -43,6 +44,7 @@
     "@babel/preset-env": "^7.18.6",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
     "eslint": "^8.19.0",
