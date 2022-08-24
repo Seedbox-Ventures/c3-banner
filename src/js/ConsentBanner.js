@@ -104,6 +104,6 @@ export default class ConsentBanner {
     const script = `(${code.toString()})("${trackingId}")`;
 
     scriptEl.innerHTML = script;
-    document.body.append(scriptEl);
+    document.body.appendChild(scriptEl);
   }
 }
