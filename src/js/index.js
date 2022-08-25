@@ -9,12 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Setup no tracking code
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  window.doNotTrack = urlParams.get("notracking");
+
+  window.preventTracking = urlParams.get("notracking");
+
   if (document.referrer.includes("notracking=1")) {
     var url = new URL(window.location.href);
     url.searchParams.set("notracking", 1);
     window.history.pushState({}, "", url);
-    window.doNotTrack = 1;
+    window.preventTracking = 1;
   }
 
   (function init(config) {

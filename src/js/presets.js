@@ -1,5 +1,5 @@
 export function ga4DefaultCode(ga4MessId) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   const js = document.createElement("script");
 
@@ -25,7 +25,7 @@ export function ga4DefaultCode(ga4MessId) {
 }
 
 export function gtmDefaultCode(gtmID) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   // Define dataLayer and the gtag function.
   window.dataLayer = window.dataLayer || [];
@@ -47,7 +47,7 @@ export function gtmDefaultCode(gtmID) {
 }
 
 export function hotjarDefaultCode(hjSiteId) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   !!(function (h, o, t, j, a, r) {
     h.hj =
@@ -65,7 +65,7 @@ export function hotjarDefaultCode(hjSiteId) {
 }
 
 export function linkedinDefaultCode(insightTagId) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
   window._linkedin_data_partner_ids.push(insightTagId);
@@ -87,7 +87,7 @@ export function linkedinDefaultCode(insightTagId) {
 }
 
 export function maDefaultCode(uetTag) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   return (function (w, d, t, r, u) {
     var f, n, i;
@@ -111,7 +111,7 @@ export function maDefaultCode(uetTag) {
 }
 
 export function metaDefaultCode(metaPixelId) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   !(function (f, b, e, v, n, t, s) {
     if (f.fbq) return;
@@ -139,7 +139,7 @@ export function metaDefaultCode(metaPixelId) {
 }
 
 export function tiktokDefaultCode(tiktokPixel) {
-  if (window.doNotTrack === 1) return;
+  if (window.preventTracking === 1) return;
 
   !(function (w, d, t) {
     w.TiktokAnalyticsObject = t;
@@ -222,7 +222,7 @@ const vh = {
     activationCode: function (ga4MessId) {
       const idBlockSelector = "[id^=block-]:not(article)";
 
-      if (window.doNotTrack === 1) return;
+      if (window.preventTracking === 1) return;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: "init-ga4",
@@ -260,7 +260,7 @@ const vh = {
   gtm: "GTM-P4MZ2HV",
   hotjar: {
     activationCode: function (hjSiteId) {
-      if (window.doNotTrack !== 1) {
+      if (window.preventTracking !== 1) {
         !(function (h, o, t, j, a, r) {
           h.hj =
             h.hj ||
