@@ -237,8 +237,7 @@ const vh = {
         const target = evt.currentTarget;
         const codeElement = target.querySelector("code.code");
         window.dataLayer.push({
-          event: `vh_click_${target.id}`,
-          vhEvent: `click_${target.id}`,
+          event: `click_${target.id}`,
         });
 
         if (codeElement) {
@@ -246,8 +245,7 @@ const vh = {
           if (target.id === closestParent.id) {
             const eventName = codeElement.innerText;
             window.dataLayer.push({
-              event: `vh_${eventName}`,
-              vhEvent: `${eventName}`,
+              event: eventName,
             });
           }
         }
