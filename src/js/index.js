@@ -27,6 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    new ConsentBanner(config);
+    window.cookieConsent = new ConsentBanner(config);
   })(window.ccc);
 });
