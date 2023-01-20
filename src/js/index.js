@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  window.preventTracking = urlParams.get("notracking");
+  window.preventTracking = urlParams.get("notracking") == 1 ? 1 : null;
 
   if (document.referrer.includes("notracking=1")) {
     var url = new URL(window.location.href);
