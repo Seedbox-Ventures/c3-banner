@@ -1,5 +1,5 @@
 export function ga4DefaultCode(ga4MessId) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   const js = document.createElement("script");
 
@@ -25,7 +25,7 @@ export function ga4DefaultCode(ga4MessId) {
 }
 
 export function gtmDefaultCode(gtmID) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   // Define dataLayer and the gtag function.
   window.dataLayer = window.dataLayer || [];
@@ -47,7 +47,7 @@ export function gtmDefaultCode(gtmID) {
 }
 
 export function hotjarDefaultCode(hjSiteId) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   !!(function (h, o, t, j, a, r) {
     h.hj =
@@ -65,7 +65,7 @@ export function hotjarDefaultCode(hjSiteId) {
 }
 
 export function linkedinDefaultCode(insightTagId) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
   window._linkedin_data_partner_ids.push(insightTagId);
@@ -87,7 +87,7 @@ export function linkedinDefaultCode(insightTagId) {
 }
 
 export function maDefaultCode(uetTag) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   return (function (w, d, t, r, u) {
     var f, n, i;
@@ -111,7 +111,7 @@ export function maDefaultCode(uetTag) {
 }
 
 export function metaDefaultCode(metaPixelId) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   !(function (f, b, e, v, n, t, s) {
     if (f.fbq) return;
@@ -139,7 +139,7 @@ export function metaDefaultCode(metaPixelId) {
 }
 
 export function tiktokDefaultCode(tiktokPixel) {
-  if (window.preventTracking === 1) return;
+  if (window.preventTracking == 1) return;
 
   !(function (w, d, t) {
     w.TiktokAnalyticsObject = t;
@@ -222,7 +222,8 @@ const vh = {
     activationCode: function (ga4MessId) {
       const idBlockSelector = "[id^=block-]:not(article)";
 
-      if (window.preventTracking === 1) return;
+      if (window.preventTracking == 1) return;
+      console.log("Activate Google Analytics", window.preventTracking);
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: "init-ga4",
@@ -258,27 +259,26 @@ const vh = {
   gtm: "GTM-P4MZ2HV",
   hotjar: {
     activationCode: function (hjSiteId) {
-      if (window.preventTracking !== 1) {
-        !(function (h, o, t, j, a, r) {
-          h.hj =
-            h.hj ||
-            function () {
-              (h.hj.q = h.hj.q || []).push(arguments);
-            };
-          h._hjSettings = { hjid: hjSiteId, hjsv: 6 };
-          a = o.getElementsByTagName("head")[0];
-          r = o.createElement("script");
-          r.async = 1;
-          r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-          a.appendChild(r);
-        })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+      if (window.preventTracking == 1) return;
+      !(function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: hjSiteId, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const keyword = urlParams.get("kwd");
+      const urlParams = new URLSearchParams(window.location.search);
+      const keyword = urlParams.get("kwd");
 
-        if (typeof keyword === "string" && keyword.length) {
-          hj("event", keyword);
-        }
+      if (typeof keyword === "string" && keyword.length) {
+        hj("event", keyword);
       }
     },
   },
