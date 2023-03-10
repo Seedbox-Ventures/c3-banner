@@ -65,6 +65,14 @@ window.ccc = {
 </script>
 ```
 
+### Presets
+This cookie banner provides three presets called default, vh & ca
+
+| Name | Description |
+| default | This is the basic preset with default activation codes when tracking ids are provided |
+| vh | The vh preset provides some basic configurations for the seedbox validation hub. It presets the google tag manager id of the validation hub and some special activation codes that are mandatory for the validation hub. |
+| ca | The ca preset provides some basic configurations for a cookie banner setup that is specialized for California and the US. All cookies are enabled by default. The cookie banner is an information-only banner in this case. |
+
 <h3>Styling options</h3>
 
 This cookie banner is implemented on basis of the vanilla-cookieconsent. (See in

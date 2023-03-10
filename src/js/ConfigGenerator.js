@@ -44,15 +44,16 @@ export default class ConfigGenerator {
         },
         settings_modal: this.generateModalSettings({
           ...langDefaults,
-          cookies: { ...defaults.cookies, ...cookies },
-        }, langId)
+          cookies: { ...presetDefaults.cookies, ...cookies },
+        }, langId, preset)
       }
     })
 
     return {
       current_lang,
       autorun: true,
-      force_consent: true,
+      mode: preset === 'ca' ? 'opt-out' : 'opt-in',
+      force_consent: preset !== 'ca',
       autoclear_cookies: true, // default: false
       page_scripts: true, // default: false
       languages
@@ -69,7 +70,7 @@ export default class ConfigGenerator {
       reject_all_btn,
       close_btn_label,
       cookie_table_headers,
-    }, langId
+    }, langId, preset
   ) {
     const cookieNames = Object.keys(cookies);
 
@@ -98,8 +99,8 @@ export default class ConfigGenerator {
         description,
         toggle: {
           value: sectionName,
-          enabled: sectionName === "essential",
-          readonly: sectionName === "essential",
+          enabled: sectionName === "essential" || preset === "ca",
+          readonly: sectionName === "essential" || preset === "ca",
         },
         cookie_table: cookieNames.map((cookieName) => {
           const { name, cookies, period, info } = cookieConfigs[cookieName];
@@ -180,6 +181,58 @@ const defaults = {
     cc: true,
   },
 };
+
+const caDefaults = {
+  languages: {
+      de: {
+        title: "Wir nutzen Cookies!",
+        description:
+            "Diese Website verwendet Cookies, um ihren ordnungsgemäßen Betrieb zu gewährleisten und Tracking-Cookies für Werbezwecke.",
+        primaryBtn: {
+            text: "Alle akzeptieren",
+            role: "accept_all",
+        },
+        secondaryBtn: {
+          text: "Detailansicht",
+          role: "c-settings",
+        },
+        settingsTitle: "Detailansicht",
+        accept_all_btn: "Alle akzeptieren",
+        save_settings_btn: "Schließen",
+        cookie_table_headers: [
+          { col1: "Name" },
+          { col2: "Cookies" },
+          { col3: "Ablauf" },
+          { col4: "Beschreibung" },
+        ],
+      },
+      en: {
+        title: "We're using cookies!",
+        description:
+            "This website uses cookies to ensure its proper operation and tracking cookies for advertising purposes.",
+        primaryBtn: {
+            text: "Accept all",
+            role: "accept_all",
+        },
+        secondaryBtn: {
+          text: "Details",
+          role: "c-settings",
+        },
+        settingsTitle: "Cookie Details",
+        accept_all_btn: "Accept all",
+        save_settings_btn: "Close",
+        cookie_table_headers: [
+          { col1: "Name" },
+          { col2: "Cookies" },
+          { col3: "Expiration" },
+          { col4: "Description" },
+        ],
+      }
+    },
+    cookies: {
+      cc: true,
+    },
+}
 
 const sectionScaffolding = {
   de: {

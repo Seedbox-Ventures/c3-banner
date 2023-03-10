@@ -216,6 +216,8 @@ const defaultPreset = {
   },
 };
 
+const ca = { ...defaultPreset };
+
 // ssp stands for seedbox super preset
 const vh = {
   ga: {
@@ -286,6 +288,7 @@ const vh = {
 
 const presetMap = {
   default: defaultPreset,
+  ca,
   vh,
 };
 

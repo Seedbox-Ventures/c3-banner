@@ -70,7 +70,7 @@ export default class ConsentBanner {
 
     Object.keys(this.config.cookies).forEach((cookieName) => {
       const { type } = cookiesConfig[cookieName];
-      const accepted = categories.includes(type);
+      const accepted = categories.includes(type) || presetName === 'ca'; //Allow all scripts for the US and California
       const cookieData = this.config.cookies[cookieName];
       let activationCode;
       let trackingId;
