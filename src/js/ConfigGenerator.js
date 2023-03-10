@@ -14,16 +14,18 @@ export default class ConfigGenerator {
   }
 
   generateConfig({
+    preset = 'default',
     current_lang = "de",
     cookies = {},
     languages: langConfig = {}
   }) {
 
     const languages = {};
+    const presetDefaults = preset === 'ca' ? caDefaults: defaults
 
     languageIds.forEach(langId => {
-      const langDefaults = defaults.languages[langId]
-      console.log("DEFAULTS", langDefaults);
+      const langDefaults = presetDefaults.languages[langId]
+
       const {
         [langId]: {
           title = langDefaults.title,

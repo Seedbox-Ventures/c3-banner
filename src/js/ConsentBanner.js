@@ -22,11 +22,8 @@ export default class ConsentBanner {
 
     this.configGenerator = ConfigGenerator.instance();
     this.vanillaConfig = this.configGenerator.generateConfig(config);
-    console.log("CONFIG", this.vanillaConfig);
     this.vanillaConsent = window.initCookieConsent();
     this.vanillaConsent.run(this.vanillaConfig);
-
-
 
     this.setupCookieScripts();
   }
