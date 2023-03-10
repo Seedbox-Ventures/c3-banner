@@ -107,7 +107,7 @@ export default class ConfigGenerator {
             col1: name,
             col2: cookies,
             col3: period,
-            col4: info,
+            col4: info[langId],
           };
         }),
       });
