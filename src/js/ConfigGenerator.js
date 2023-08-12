@@ -137,7 +137,7 @@ const defaults = {
           role: "accept_all",
       },
       secondaryBtn: {
-        text: "Individuelle Datenschutzeinstellungen",
+        text: "Individuelle Einstellungen",
         role: "c-settings",
       },
       settingsTitle: "Cookie Einstellungen",
